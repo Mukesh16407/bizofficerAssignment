@@ -508,7 +508,7 @@ export const Register = () => {
         </Grid>
         <Grid item xs={12}  >
          <Button variant="outlined">CANCEL</Button>
-         <Button variant="outlined" sx={{backgroundColor:"green",color:"white"}}>Save</Button>
+         <Button variant="outlined" sx={{backgroundColor:"green",color:"white", marginLeft:1}}>Save</Button>
         </Grid>
 
       </Grid>
