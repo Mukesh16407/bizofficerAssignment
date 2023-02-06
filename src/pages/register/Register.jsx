@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -85,11 +85,33 @@ const selectRegin =[
 const visibility =[
   "Public",
   "Private"
-]
+];
+
 export const Register = () => {
+
+  const [inputdata] = useState({
+    // eslint-disable-next-line
+    acoountName: "",
+    contactName:"",
+    mobile:"",
+    casetitile:"",
+    email:"",
+    phone:"",
+    address:"",
+    pinCode:"",
+    serialNo:"",
+    technician:"",
+    
+
+  });
+
+  const setInputValue =()=>{
+
+  }
   return (
     <div className="register">
       <p>New Cases</p>
+      <form>
       <Grid container spacing={1} sx={{ alignItems: "center" }}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -100,6 +122,9 @@ export const Register = () => {
                 width: "500px",
               },
             }}
+            name='acoountName' 
+            value={inputdata.acoountName} 
+            onChange={setInputValue} 
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -399,7 +424,7 @@ export const Register = () => {
         <Grid item xs={12} sm={6}>
           <FormControl sx={{ m: 1, width: 510 }}>
             <InputLabel id="demo-multiple-name-label">
-             Source
+             Selected Reason
             </InputLabel>
             <Select
               labelId="demo-multiple-name-label"
@@ -512,6 +537,8 @@ export const Register = () => {
         </Grid>
 
       </Grid>
+      </form>
+     
     </div>
   );
 };

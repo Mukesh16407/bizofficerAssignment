@@ -1,68 +1,73 @@
-import { Table } from '@mui/material'
 import React from 'react'
+import { DataGrid } from '@mui/x-data-grid';
 
 
+const columns = [
+  { field: '', headerName: '', width: 100 },
+  { field: 'id', headerName: '#', width: 100 },
+  { field: 'casenumber', headerName: 'Case Number', width: 130 },
+  { field: 'title', headerName: 'Title', width: 130 },
+  {field:"product",headerName:"Product",width:130},
+  {field:"substatus", headerName:"Sub Status", width:130},
+  {field:"status", headerName:"Status", width:130},
+  {field:"technician", headerName:"Technician", width:130},
+  {field:"technicianStatus", headerName:"Technician Status", width:130},
+  {field:"techniciandatetime", headerName:"Technician date Time", width:130},
+
+  {field:"accountNumber", headerName:"AccountNumber", width:130},
+  {field:"contactName", headerName:"Contact Name", width:130},
+  {field:"mobile", headerName:"Mobile", width:130},
+  {field:"phone", headerName:"Phone", width:130},
+  {field:"address", headerName:"Address", width:130},
+  {field:"package", headerName:"Package", width:130},
+
+  {field:"billable", headerName:"Billable", width:130},
+  {field:"amount", headerName:"Amount", width:130},
+  {field:"priority", headerName:"Priority", width:130},
+  {field:"agent", headerName:"Agent", width:130},
+  {field:"channel", headerName:"Channel", width:130},
+  {field:"remarks", headerName:"Remarks", width:130},
+  {field:"comments", headerName:"Comments", width:130},
+  
+];
+const rows = [
+  { id: 1, casenumber: 111116, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+  technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+  package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},
+{ id: 2, casenumber: 111117, title: 'Reparement', product: "Cooking range",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 3, casenumber: 111118, title: 'repare', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 4, casenumber: 111119, title: 'Incidence', product: "Sofa set",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 5, casenumber: 111110, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 6, casenumber: 111111, title: 'Incidence', product: "no selected",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 7, casenumber: 111121, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},{ id: 8, casenumber: 111122, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
+},
+];
 export const Tables = () => {
   return (
-    <div>
-       <Table >
-      <thead>
-        <tr>
-          <th ></th>
-          <th>#</th>
-          <th>Case Number</th>
-          <th>Title</th>
-          <th>Product</th>
-          <th>Sub status</th>
-          <th>Status</th>
-          <th>Technician</th>
-          <th>Technician Status</th>
-          <th>Technician date Time</th>
-          <th>AccountNumber</th>
-          <th>Contact Name</th>
-          <th>Mobile</th>
-          <th>Phone</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Frozen yoghurt</td>
-          <td>159</td>
-          <td>6</td>
-          <td>24</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Ice cream sandwich</td>
-          <td>237</td>
-          <td>9</td>
-          <td>37</td>
-          <td>4.3</td>
-        </tr>
-        <tr>
-          <td>Eclair</td>
-          <td>262</td>
-          <td>16</td>
-          <td>24</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>Cupcake</td>
-          <td>305</td>
-          <td>3.7</td>
-          <td>67</td>
-          <td>4.3</td>
-        </tr>
-        <tr>
-          <td>Gingerbread</td>
-          <td>356</td>
-          <td>16</td>
-          <td>49</td>
-          <td>3.9</td>
-        </tr>
-      </tbody>
-    </Table>
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
     </div>
   )
 }
