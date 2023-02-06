@@ -35,26 +35,26 @@ const rows = [
   technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
   package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },
-{ id: 2, casenumber: 111117, title: 'Reparement', product: "Cooking range",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+{ id: 2, casenumber: 111117, title: 'Reparement', product: "Cooking range",substatus:"Cancelled", status:"Open",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:8986754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },{ id: 3, casenumber: 111118, title: 'repare', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9186754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
-},{ id: 4, casenumber: 111119, title: 'Incidence', product: "Sofa set",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+},{ id: 4, casenumber: 111119, title: 'Incidence', product: "Sofa set",substatus:"Cancelled", status:"Open",technician:"Mohan Mahalotra",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9286754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },{ id: 5, casenumber: 111110, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Open",mobile:9386754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },{ id: 6, casenumber: 111111, title: 'Incidence', product: "no selected",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9486754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },{ id: 7, casenumber: 111121, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9586754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },{ id: 8, casenumber: 111122, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
-technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9086754321,phone:6543218,address:"K.K 333",
+technicianStatus:"New",techniciandatetime:"28-01-2023 3:30pm",accountNumber:"Ok limited",contactName:"Jai Mal",mobile:9686754321,phone:6543218,address:"K.K 333",
 package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"Primary",remarks:"",comments:""
 },
 ];
