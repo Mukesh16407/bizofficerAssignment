@@ -13,7 +13,6 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import "./register.css";
 import { Spinner } from "../../components/Spinner";
 import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
@@ -88,7 +87,7 @@ const visibility =[
   "Private"
 ];
 
-export const Register = ({handleClose}) => {
+export const Edit = ({handleClose}) => {
  
   const [inputdata, setInputData] = useState({
   
@@ -137,14 +136,14 @@ export const Register = ({handleClose}) => {
   return (
     <div className="register">
       <div className="newcases">
-        <div>New Cases</div>
+        <div>Edit Cases</div>
         <div onClick={handleClose} style={{cursor:"pointer"}}><CloseIcon/></div>
       </div>
 
       {
         showspin ? <Spinner/>: 
         <form style={MenuProps.root}>
-        <Grid container   sx={{ alignItems: "center" }}spacing={1}>
+        <Grid container spacing={1}>
           <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Account Name"
@@ -560,3 +559,4 @@ export const Register = ({handleClose}) => {
     </div>
   );
 };
+
