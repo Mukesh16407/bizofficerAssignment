@@ -10,6 +10,10 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState } from 'react';
 import { Register } from '../pages/register/Register';
+import { Stack } from '@mui/system';
+import { ClickCheckBoxShowIcon } from './ClickCheckBoxShowIcon';
+import { useContext } from 'react';
+import { showData } from '../provider/ContectProvider';
 
 
 
@@ -44,7 +48,8 @@ const allCases=[
 ]
 
 export function SecondHeader() {
-    
+  const {show} = useContext(showData);
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -135,6 +140,11 @@ export function SecondHeader() {
       <BarChartIcon sx={{marginLeft:"5px",width:"40px",color:"blue",height:"30px"}}/>
       <CalendarMonthIcon sx={{marginLeft:"-10px",width:"40px",color:"blue",height:"30px"}}/>
       <Button onClick={handleOpen}><AddCircleIcon sx={{marginLeft:"-30px",width:"40px",color:"blue",height:"30px"}} /></Button>
+      {
+        show ? <Stack>
+        <ClickCheckBoxShowIcon/>
+      </Stack> :""
+      }
       <Modal
         open={open}
         onClose={handleClose}

@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, {  useContext, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Radio from "@mui/material/Radio";
+import { showData } from '../provider/ContectProvider';
+
 
 const rows = [
   { id: 1, casenumber: 111116, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
@@ -31,7 +33,7 @@ package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"
 },
  
 ];
-let radioChecked = [rows[0].id];
+let radioChecked = [];
 const columns = [
   {
     field: "radiobutton",
@@ -39,7 +41,7 @@ const columns = [
     width: 100,
     sortable: false,
     renderCell: (params) => (
-      <Radio checked={radioChecked[0] === params.id} value={params.id} />
+      <Radio checked={radioChecked[0] === params.id } value={params.id} />
     )
   },
   { field: 'casenumber', headerName: 'Case Number', width: 130 },
@@ -69,12 +71,21 @@ const columns = [
 
 
 export const Tables = () => {
+  const {setShow} = useContext(showData);
+  
   const [selectionModel, setSelectionModel] = useState(radioChecked);
   radioChecked = selectionModel;
+  
+  if ((selectionModel.length)){
+    setShow(true)
+  }
+  
 
   // const selectedRow = rows.filter((item) => {
   //   return item.id === selectionModel[0];
   // });
+
+
 
   return (
     <div style={{ height: 400, width: '100%',marginTop:"15px" }}>
