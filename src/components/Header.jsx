@@ -10,18 +10,19 @@ import { SecondHeader } from './SecondHeader';
 import { Link } from 'react-router-dom';
 
 
+
 export  function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+    <Box sx={{ flexGrow: 1, }}>
+      <AppBar position="static" sx={{height:"45px", justifyContent:"center"}}>
+        <Toolbar sx={{marginLeft:"30px"}}>
         <Link to={"/"}>
           <IconButton
-            size="large"
+            size="medium"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2,color:"white" }}
+            sx={{ mr: 2,color:"white", fontSize: "50px"}}
           >
             <MenuIcon />
           </IconButton>
@@ -30,12 +31,12 @@ export  function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block',fontSize: "16px" } }}
           >
             Cases
           </Typography>
          
-        <LogoutIcon/>
+        <LogoutIcon sx={{fontSize: "20px"}}/>
         </Toolbar>
       </AppBar>
        <SecondHeader/>

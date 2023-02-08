@@ -15,16 +15,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import "./register.css";
 import { Spinner } from "../../components/Spinner";
+import dayjs from 'dayjs';
 
-const ITEM_HEIGHT = 32;
-const ITEM_PADDING_TOP = 4;
+
 const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
+  root: {
+    flexGrow: 1,
   },
+ 
 };
 const channels = ["Select Cases Channels", "Primary", "Secondary"];
 const caseType = ["All Case Type"];
@@ -90,8 +88,8 @@ const visibility =[
 
 export const Register = () => {
  
-  const [inputdata] = useState({
-    // eslint-disable-next-line
+  const [inputdata, setInputData] = useState({
+  
     acoountName: "",
     contactName:"",
     mobile:"",
@@ -102,14 +100,34 @@ export const Register = () => {
     pinCode:"",
     serialNo:"",
     technician:"",
+    model:"",
+    invoiceNumber:"",
+    quantity:"",
+    remarks:"",
+    otherDetails:"",
+    tags:"",
+    agents:""
     
-
   });
   const [showspin, setShowSpin] = useState(true);
-  const setInputValue =()=>{
+  const [date, setdate] = useState(dayjs('2014-08-18T21:11:54'));
+  const [channel,setChannel] = useState("Select Cases Channels")
 
+  const handleChangedate = (newValue) => {
+    setdate(newValue);
+  };
+
+  const handleChangeChannel =(e)=>{
+    setChannel(e.value)
+  }
+  console.log(channel)
+  const setInputValue =(e)=>{
+    const { name, value } = e.target;
+    
+    setInputData({ ...inputdata, [name]: value })
   }
 
+ console.log(inputdata)
   useEffect(()=>{
     setTimeout(() => {
       setShowSpin(false)
@@ -120,9 +138,9 @@ export const Register = () => {
     <div className="register">
       <p>New Cases</p>
       {
-        showspin ? <Spinner/>: <form>
-        <Grid container spacing={1} sx={{ alignItems: "center" }}>
-          <Grid item xs={12} sm={6}>
+        showspin ? <Spinner/>: <form style={MenuProps.root}>
+        <Grid container  sx={{ alignItems: "center" }}>
+          <Grid item xs={12}  sm={6} md={6} >
             <TextField
               label="Account Name"
               variant="outlined"
@@ -136,14 +154,17 @@ export const Register = () => {
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6 }>
             <FormControl sx={{ m: 1, width: 500 }}>
               <InputLabel id="demo-multiple-name-label">All Channels</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+                input={<OutlinedInput label="All Channels" />}
+               
+                value={inputdata.channel}
+                name="name"
+                onChange={setInputValue}
               >
                 {channels.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -153,7 +174,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <TextField
               label="Contact Name"
               variant="outlined"
@@ -161,10 +182,15 @@ export const Register = () => {
                 style: {
                   width: "500px",
                 },
+                
               }}
+              name='contactName' 
+              value={inputdata.contactName} 
+              onChange={setInputValue} 
+              
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 500 }}>
               <InputLabel id="demo-multiple-name-label">
                 All Cases Type
@@ -173,7 +199,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {caseType.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -183,7 +209,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Mobile"
               variant="outlined"
@@ -192,9 +218,13 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='mobile' 
+              value={inputdata.mobile} 
+              onChange={setInputValue} 
+              
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <TextField
               label="Case Title"
               variant="outlined"
@@ -204,9 +234,13 @@ export const Register = () => {
                   marginLeft:"20px"
                 },
               }}
+              name='casetitile' 
+              value={inputdata.casetitile} 
+              onChange={setInputValue} 
+              
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <TextField
               label="Email"
               variant="outlined"
@@ -215,9 +249,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='email' 
+              value={inputdata.email} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 500 }}>
               <InputLabel id="demo-multiple-name-label">
                 All Cases Type
@@ -226,7 +263,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {catagory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -236,7 +273,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6}  sm={6}>
             <TextField
               label="Phone"
               variant="outlined"
@@ -245,9 +282,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='phone' 
+              value={inputdata.phone} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 500 }}>
               <InputLabel id="demo-multiple-name-label">
                 Select Category from product list
@@ -256,7 +296,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {selectcategory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -266,7 +306,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <TextField
               label="Address"
               variant="outlined"
@@ -275,9 +315,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='address' 
+              value={inputdata.address} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 500 }}>
               <InputLabel id="demo-multiple-name-label">
                 Select Category from product list
@@ -286,7 +329,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {brands.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -296,7 +339,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Pin Codes"
               variant="outlined"
@@ -305,9 +348,13 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='pinCode' 
+              value={inputdata.pinCode} 
+              onChange={setInputValue} 
+              
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Serial No"
               variant="outlined"
@@ -316,9 +363,12 @@ export const Register = () => {
                   width: "485px",
                 },
               }}
+              name='serialNo' 
+              value={inputdata.serialNo} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Technician"
               variant="outlined"
@@ -327,9 +377,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='technician' 
+              value={inputdata.technician} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <TextField
               label="Model(Serial Number)"
               variant="outlined"
@@ -338,9 +391,12 @@ export const Register = () => {
                   width: "485px",
                 },
               }}
+              name='model' 
+              value={inputdata.model} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateTimePicker
           renderInput={(props) => <TextField {...props} />}
@@ -350,11 +406,12 @@ export const Register = () => {
               width: "465px",
             },
           }}
-        
+          value={date}
+          onChange={handleChangedate}
         />
       </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 510 }}>
               <InputLabel id="demo-multiple-name-label">
                Warranty
@@ -363,7 +420,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {warranty.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -373,7 +430,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 514 }}>
               <InputLabel id="demo-multiple-name-label">
                priority
@@ -382,7 +439,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {priorityItem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -392,7 +449,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 510 }}>
               <InputLabel id="demo-multiple-name-label">
                problem
@@ -401,7 +458,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {selectproblem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -411,7 +468,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 510 }}>
               <InputLabel id="demo-multiple-name-label">
                Source
@@ -420,7 +477,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {sources.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -430,7 +487,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <FormControl sx={{ m: 1, width: 510 }}>
               <InputLabel id="demo-multiple-name-label">
                Selected Reason
@@ -439,7 +496,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {selectRegin.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -449,7 +506,7 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Invoice Number"
               variant="outlined"
@@ -458,9 +515,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='invoiceNumber' 
+              value={inputdata.invoiceNumber} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Quantity"
               variant="outlined"
@@ -471,7 +531,7 @@ export const Register = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Case Remarks"
               variant="outlined"
@@ -480,9 +540,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='remarks' 
+              value={inputdata.remarks} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Products Other details"
               variant="outlined"
@@ -491,9 +554,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='otherDetails' 
+              value={inputdata.otherDetails} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}md={6} sm={6}>
             <TextField
               label="Tags"
               placeholder="Enter tags"
@@ -503,9 +569,12 @@ export const Register = () => {
                   width: "500px",
                 },
               }}
+              name='tags' 
+              value={inputdata.tags} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={4} spacing={1}>
+          <Grid item xs={12}md={6} sm={4} spacing={1}>
             <TextField
               label="Agents"
               placeholder="Tester"
@@ -515,9 +584,12 @@ export const Register = () => {
                   width: "300px",
                 },
               }}
+              name='agents' 
+              value={inputdata.agents} 
+              onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12}md={6} sm={2}>
             <FormControl sx={{ m: 1, width: 100 }}>
               <InputLabel id="demo-multiple-name-label">
                Visibility
@@ -526,7 +598,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
+               
               >
                 {visibility.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -536,11 +608,11 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{alignItems:"center"}} >
+          <Grid item xs={12}md={12} sm={6} sx={{alignItems:"center"}} >
           <Checkbox sx={{width:"30px",marginRight:1}}  /><span>Billable</span>
           <Checkbox label="Billable"sx={{width:"30px",marginLeft:1}}  /><span>Package Services</span>
           </Grid>
-          <Grid item xs={12}  >
+          <Grid item xs={12}md={12}  >
            <Button variant="outlined">CANCEL</Button>
            <Button variant="contained" color="success" sx={{ marginLeft:1}}>Save</Button>
           </Grid>

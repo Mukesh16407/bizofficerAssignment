@@ -1,6 +1,7 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
-
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 const columns = [
   { field: '', headerName: '', width: 100 },
@@ -67,6 +68,7 @@ export const Tables = () => {
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        
       />
     </div>
   )

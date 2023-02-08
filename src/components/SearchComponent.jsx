@@ -50,8 +50,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const SearchComponent = () => {
   return (
-    <Box sx={{display:'flex'}}>
-         <Search>
+    <Box sx={{display:'flex',height:"inherit",marginLeft:"-17px"}}>
+         <Search sx={{height:'auto'}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -61,7 +61,7 @@ export const SearchComponent = () => {
               
             />
           </Search>
-          <Button sx={{border:"1px solid black",color:"black"}}>Search</Button>
+          <Button sx={{border:"1px solid black",color:"black",marginLeft:"-10px"}}>Search</Button>
     </Box>
   )
 }

@@ -10,18 +10,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useNavigate } from 'react-router-dom';
 
-const ITEM_HEIGHT = 32;
-const ITEM_PADDING_TOP = 4;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-      
 
-    },
-  },
-};
+
 
 const channels = [
  "All Channels",
@@ -58,34 +48,33 @@ export function SecondHeader() {
   }
 
   return (
-    <Box sx={{display:"flex",alignItems:"center"}}>
-      <FormControl sx={{ m: 1, width: 200, }}>
+    <Box sx={{display:"flex",alignItems:"center",height:"40px",marginTop:"5px"}}>
+      <FormControl  sx={{height:"inherit",width:"150px",marginLeft:"10px"}}>
       <InputLabel id="demo-multiple-name-label">All Channels</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
+          sx={{height:"100%"}}
           
         >
           {channels.map((name) => (
-            <MenuItem
+            <MenuItem 
               key={name}
-              value={name}
-              
+              value={name}   
             >
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, width: 200, }}>
+      <FormControl  sx={{height:"inherit",width:"150px",marginLeft:"5px"}}>
       <InputLabel id="demo-multiple-name-label">All Cases Type</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
+          sx={{height:"100%"}}
           
         >
           {caseType.map((name) => (
@@ -99,13 +88,13 @@ export function SecondHeader() {
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, width: 200, }}>
+      <FormControl sx={{height:"inherit",width:"150px",marginLeft:"5px"}}>
       <InputLabel id="demo-multiple-name-label">All Status</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
+          sx={{height:"100%"}}
           
         >
           {allStatus.map((name) => (
@@ -119,13 +108,13 @@ export function SecondHeader() {
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, width: 200, }}>
+      <FormControl sx={{height:"inherit",width:"150px",marginLeft:"5px"}}>
       <InputLabel id="demo-multiple-name-label">All Cases</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
+          sx={{height:"100%"}}
           
         >
           {allCases.map((name) => (
@@ -139,7 +128,7 @@ export function SecondHeader() {
           ))}
         </Select>
       </FormControl>
-      <SearchComponent/>
+      <SearchComponent sx={{height:"inherit",width:"150px",marginLeft:"5px"}}/>
       <BarChartIcon sx={{marginLeft:2,width:40,color:"blue",height:"70px"}}/>
       <CalendarMonthIcon sx={{marginLeft:1,width:40,color:"blue",height:"80px"}}/>
       <Button onClick={adduser} ><AddCircleIcon sx={{marginLeft:1,width:40,color:"blue",height:"80px"}} /></Button>
