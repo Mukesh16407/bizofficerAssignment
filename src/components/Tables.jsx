@@ -72,9 +72,9 @@ export const Tables = () => {
   const [selectionModel, setSelectionModel] = useState(radioChecked);
   radioChecked = selectionModel;
 
-  const selectedRow = rows.filter((item) => {
-    return item.id === selectionModel[0];
-  });
+  // const selectedRow = rows.filter((item) => {
+  //   return item.id === selectionModel[0];
+  // });
 
   return (
     <div style={{ height: 400, width: '100%',marginTop:"15px" }}>

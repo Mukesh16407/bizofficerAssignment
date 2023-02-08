@@ -1,5 +1,11 @@
 .register{
-    width: 75%;
+    width: 95%;
     margin: auto;
     padding: 10px;
+    
+}
+
+.newcases{
+    display: flex;
+    justify-content: space-between;
 }

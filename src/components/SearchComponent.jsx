@@ -61,7 +61,7 @@ export const SearchComponent = () => {
               
             />
           </Search>
-          <Button sx={{border:"1px solid black",color:"black",marginLeft:"-10px"}}>Search</Button>
+          <Button sx={{marginLeft:"-10px"}}>Search</Button>
     </Box>
   )
 }

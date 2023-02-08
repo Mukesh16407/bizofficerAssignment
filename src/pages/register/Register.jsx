@@ -16,6 +16,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import "./register.css";
 import { Spinner } from "../../components/Spinner";
 import dayjs from 'dayjs';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const MenuProps = {
@@ -24,6 +25,7 @@ const MenuProps = {
   },
  
 };
+
 const channels = ["Select Cases Channels", "Primary", "Secondary"];
 const caseType = ["All Case Type"];
 const catagory =[
@@ -86,7 +88,7 @@ const visibility =[
   "Private"
 ];
 
-export const Register = () => {
+export const Register = ({handleClose}) => {
  
   const [inputdata, setInputData] = useState({
   
@@ -111,16 +113,14 @@ export const Register = () => {
   });
   const [showspin, setShowSpin] = useState(true);
   const [date, setdate] = useState(dayjs('2014-08-18T21:11:54'));
-  const [channel,setChannel] = useState("Select Cases Channels")
+  
 
   const handleChangedate = (newValue) => {
     setdate(newValue);
   };
 
-  const handleChangeChannel =(e)=>{
-    setChannel(e.value)
-  }
-  console.log(channel)
+ 
+ 
   const setInputValue =(e)=>{
     const { name, value } = e.target;
     
@@ -136,32 +136,33 @@ export const Register = () => {
   },[])
   return (
     <div className="register">
-      <p>New Cases</p>
+      <div className="newcases">
+        <div>New Cases</div>
+        <div onClick={handleClose}><CloseIcon/></div>
+      </div>
+
       {
-        showspin ? <Spinner/>: <form style={MenuProps.root}>
-        <Grid container  sx={{ alignItems: "center" }}>
-          <Grid item xs={12}  sm={6} md={6} >
+        showspin ? <Spinner/>: 
+        <form style={MenuProps.root}>
+        <Grid container   sx={{ alignItems: "center" }}spacing={1}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Account Name"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='acoountName' 
               value={inputdata.acoountName} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6 }>
-            <FormControl sx={{ m: 1, width: 500 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">All Channels</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="All Channels" />}
-               
+                autoWidth={true}
                 value={inputdata.channel}
                 name="name"
                 onChange={setInputValue}
@@ -174,24 +175,19 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Contact Name"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-                
-              }}
+              fullWidth={true}
               name='contactName' 
               value={inputdata.contactName} 
               onChange={setInputValue} 
               
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 500 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
+            <FormControl fullWidth={true} >
               <InputLabel id="demo-multiple-name-label">
                 All Cases Type
               </InputLabel>
@@ -199,7 +195,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {caseType.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -209,61 +205,48 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Mobile"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='mobile' 
               value={inputdata.mobile} 
               onChange={setInputValue} 
               
             />
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <TextField
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+          <TextField
               label="Case Title"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "460px",
-                  marginLeft:"20px"
-                },
-              }}
+              fullWidth={true}
               name='casetitile' 
               value={inputdata.casetitile} 
               onChange={setInputValue} 
               
             />
-          </Grid>
-          <Grid item xs={12} md={6} sm={6}>
+          </Grid>  
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Email"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='email' 
               value={inputdata.email} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 500 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}  >
               <InputLabel id="demo-multiple-name-label">
                 All Cases Type
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
-               
+                input={<OutlinedInput label="All Cases Type" />}
+                autoWidth={true}
               >
                 {catagory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -273,22 +256,18 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6}  sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Phone"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='phone' 
               value={inputdata.phone} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 500 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                 Select Category from product list
               </InputLabel>
@@ -296,7 +275,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {selectcategory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -306,22 +285,18 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
+          <Grid item  xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Address"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='address' 
               value={inputdata.address} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 500 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                 Select Category from product list
               </InputLabel>
@@ -329,7 +304,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {brands.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -339,71 +314,55 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Pin Codes"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='pinCode' 
               value={inputdata.pinCode} 
               onChange={setInputValue} 
               
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Serial No"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "485px",
-                },
-              }}
+              fullWidth={true}
               name='serialNo' 
               value={inputdata.serialNo} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Technician"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='technician' 
               value={inputdata.technician} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Model(Serial Number)"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "485px",
-                },
-              }}
+              fullWidth={true}
               name='model' 
               value={inputdata.model} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateTimePicker
           renderInput={(props) => <TextField {...props} />}
           label="DateTimePicker"
           inputProps={{
             style: {
-              width: "465px",
+              width: "359px",
             },
           }}
           value={date}
@@ -411,8 +370,8 @@ export const Register = () => {
         />
       </LocalizationProvider>
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 510 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                Warranty
               </InputLabel>
@@ -420,7 +379,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {warranty.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -430,8 +389,8 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 514 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl  fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                priority
               </InputLabel>
@@ -439,7 +398,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {priorityItem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -449,8 +408,8 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 510 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                problem
               </InputLabel>
@@ -458,7 +417,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {selectproblem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -468,8 +427,8 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 510 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                Source
               </InputLabel>
@@ -477,7 +436,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {sources.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -487,8 +446,8 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
-            <FormControl sx={{ m: 1, width: 510 }}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
                Selected Reason
               </InputLabel>
@@ -496,7 +455,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {selectRegin.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -506,91 +465,67 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Invoice Number"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='invoiceNumber' 
               value={inputdata.invoiceNumber} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Quantity"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Case Remarks"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='remarks' 
               value={inputdata.remarks} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
               label="Products Other details"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='otherDetails' 
               value={inputdata.otherDetails} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={6}>
+          <Grid item  xs={12} sm={6} md={6} lg={6}>
             <TextField
               label="Tags"
               placeholder="Enter tags"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "500px",
-                },
-              }}
+              fullWidth={true}
               name='tags' 
               value={inputdata.tags} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={4} spacing={1}>
+          <Grid item  xs={12} sm={6} md={3} lg={3} >
             <TextField
               label="Agents"
               placeholder="Tester"
               variant="outlined"
-              inputProps={{
-                style: {
-                  width: "300px",
-                },
-              }}
+              fullWidth={true}
               name='agents' 
               value={inputdata.agents} 
               onChange={setInputValue} 
             />
           </Grid>
-          <Grid item xs={12}md={6} sm={2}>
-            <FormControl sx={{ m: 1, width: 100 }}>
+          <Grid item xs={12} sm={6} md={3} lg={3} >
+            <FormControl fullWidth={true} >
               <InputLabel id="demo-multiple-name-label">
                Visibility
               </InputLabel>
@@ -598,7 +533,7 @@ export const Register = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
-               
+                autoWidth={true}
               >
                 {visibility.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -608,12 +543,12 @@ export const Register = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}md={12} sm={6} sx={{alignItems:"center"}} >
+          <Grid item >
           <Checkbox sx={{width:"30px",marginRight:1}}  /><span>Billable</span>
           <Checkbox label="Billable"sx={{width:"30px",marginLeft:1}}  /><span>Package Services</span>
           </Grid>
           <Grid item xs={12}md={12}  >
-           <Button variant="outlined">CANCEL</Button>
+           <Button variant="outlined"onClick={handleClose}>CANCEL</Button>
            <Button variant="contained" color="success" sx={{ marginLeft:1}}>Save</Button>
           </Grid>
   

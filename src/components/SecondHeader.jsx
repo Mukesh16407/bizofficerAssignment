@@ -3,12 +3,14 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Box, Button, InputLabel } from '@mui/material';
+import { Box, Button, InputLabel, Modal, Paper} from '@mui/material';
 import { SearchComponent } from './SearchComponent';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Register } from '../pages/register/Register';
+
 
 
 
@@ -42,10 +44,11 @@ const allCases=[
 ]
 
 export function SecondHeader() {
-    const navigate = useNavigate();
-  const adduser=()=>{
-    navigate("/register")
-  }
+    
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box sx={{display:"flex",alignItems:"center",height:"40px",marginTop:"5px"}}>
@@ -131,7 +134,18 @@ export function SecondHeader() {
       <SearchComponent sx={{height:"inherit",width:"150px",marginLeft:"5px"}}/>
       <BarChartIcon sx={{marginLeft:"5px",width:"40px",color:"blue",height:"30px"}}/>
       <CalendarMonthIcon sx={{marginLeft:"-10px",width:"40px",color:"blue",height:"30px"}}/>
-      <Button onClick={adduser} ><AddCircleIcon sx={{marginLeft:"-30px",width:"40px",color:"blue",height:"30px"}} /></Button>
+      <Button onClick={handleOpen}><AddCircleIcon sx={{marginLeft:"-30px",width:"40px",color:"blue",height:"30px"}} /></Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Paper sx={{width:"60%", marginTop:"100px", marginLeft:"15%",overflowY:"scroll",height:"85vh", overflowX:"hidden"}}>
+        <Register handleClose={handleClose}/>
+
+        </Paper>
+      </Modal>
       
     </Box>
   );
