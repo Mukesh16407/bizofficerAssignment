@@ -61,13 +61,13 @@ package:"",billable:"",amount:"",priority:"High",agent:"Andrew Wiston",channel:"
 ];
 export const Tables = () => {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '100%',marginTop:"15px" }}>
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
+        checkboxSelection={true}
         
       />
     </div>

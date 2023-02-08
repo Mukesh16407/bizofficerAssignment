@@ -129,9 +129,9 @@ export function SecondHeader() {
         </Select>
       </FormControl>
       <SearchComponent sx={{height:"inherit",width:"150px",marginLeft:"5px"}}/>
-      <BarChartIcon sx={{marginLeft:2,width:40,color:"blue",height:"70px"}}/>
-      <CalendarMonthIcon sx={{marginLeft:1,width:40,color:"blue",height:"80px"}}/>
-      <Button onClick={adduser} ><AddCircleIcon sx={{marginLeft:1,width:40,color:"blue",height:"80px"}} /></Button>
+      <BarChartIcon sx={{marginLeft:"5px",width:"40px",color:"blue",height:"30px"}}/>
+      <CalendarMonthIcon sx={{marginLeft:"-10px",width:"40px",color:"blue",height:"30px"}}/>
+      <Button onClick={adduser} ><AddCircleIcon sx={{marginLeft:"-30px",width:"40px",color:"blue",height:"30px"}} /></Button>
       
     </Box>
   );
