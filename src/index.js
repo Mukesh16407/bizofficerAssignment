@@ -8,13 +8,13 @@ import { ContectProvider } from "./provider/ContectProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ContectProvider>
+  <ContectProvider>
+    <React.StrictMode>
+      <BrowserRouter>
         <App />
-      </ContectProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+      </BrowserRouter>
+    </React.StrictMode>
+  </ContectProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

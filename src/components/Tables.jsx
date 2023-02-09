@@ -2,7 +2,7 @@ import React, {  useContext, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Radio from "@mui/material/Radio";
 import { showData } from '../provider/ContectProvider';
-
+import {Header} from './Header'
 
 const rows = [
   { id: 1, casenumber: 111116, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
@@ -79,7 +79,9 @@ export const Tables = () => {
   if ((selectionModel.length)){
     setShow(true)
   }
-  
+  const handleSelectionModel =(newSelectionModel)=>{
+    setSelectionModel(newSelectionModel);
+  }
 
   // const selectedRow = rows.filter((item) => {
   //   return item.id === selectionModel[0];
@@ -88,17 +90,19 @@ export const Tables = () => {
 
 
   return (
+    <>
+    <Header/>
     <div style={{ height: 400, width: '100%',marginTop:"15px" }}>
       <DataGrid
         rows={rows}
         columns={columns}
         autoHeight
         selectionModel={selectionModel}
-        onSelectionModelChange={(newSelectionModel) => {
-          setSelectionModel(newSelectionModel);
-        }}
+        onSelectionModelChange={handleSelectionModel}
         
       />
     </div>
+    </>
+    
   )
 }

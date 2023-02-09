@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+
 import {
   Button,
   Checkbox,
@@ -19,6 +20,7 @@ import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
 
 
+
 const MenuProps = {
   root: {
     flexGrow: 1,
@@ -27,7 +29,7 @@ const MenuProps = {
 };
 
 const channels = ["Select Cases Channels", "Primary", "Secondary"];
-const caseType = ["All Case Type"];
+const caseType = ["Select Case Type"];
 const catagory =[
   "Selected Category",
   "Electrical",
@@ -89,29 +91,41 @@ const visibility =[
 ];
 
 export const Register = ({handleClose}) => {
- 
+  
   const [inputdata, setInputData] = useState({
   
     acoountName: "",
+    channels:"Select Cases Channels",
     contactName:"",
     mobile:"",
+    allCaseType:"Select Case Type",
     casetitile:"",
     email:"",
+    productCategory:"Selected Category",
     phone:"",
+    product:"select Category from Product list",
     address:"",
+    brand:"",
     pinCode:"",
     serialNo:"",
     technician:"",
     model:"",
+    warranty:"Select",
+    priority:"Normal",
+    problem:"Select Problem",
+    source:"",
+    reason:"Select Region",
     invoiceNumber:"",
-    quantity:"",
+    quantity:"1",
     remarks:"",
     otherDetails:"",
     tags:"",
-    agents:""
+    agents:"Tester",
+    visibility:"Private"
     
   });
   const [showspin, setShowSpin] = useState(true);
+
   const [date, setdate] = useState(dayjs('2014-08-18T21:11:54'));
   
 
@@ -126,8 +140,45 @@ export const Register = ({handleClose}) => {
     
     setInputData({ ...inputdata, [name]: value })
   }
+ 
+  const submitUserData =async(e)=>{
+    e.preventDefault();
+    const {acoountName, channels, contactName, mobile, allCaseType,casetitile,email,productCategory,
+    phone, product, address, brand, pinCode,serialNo,technician,model,
+    warranty,priority,problem,source,reason,invoiceNumber,quantity,remarks,otherDetails,
+    tags,agents,visibility} =inputdata;
+     
+   try{
+    
+    const res =  await fetch('http://localhost:6010/api/case/register',{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        acoountName, channels, contactName, mobile, allCaseType,casetitile,email,productCategory,
+        phone, product, address, brand, pinCode,serialNo,technician,model,
+        warranty,priority,problem,source,reason,invoiceNumber,quantity,remarks,otherDetails,
+        tags,agents,visibility
+      })
+     })
+     const data = await res.json();
 
- console.log(inputdata)
+     console.log(data)
+     if(res.success){
+        alert("Data Added");
+      
+     }else{
+      alert(data.message);
+     }
+   }catch(error){
+    console.log("Error")
+    
+
+   }
+  }
+ 
+
   useEffect(()=>{
     setTimeout(() => {
       setShowSpin(false)
@@ -157,14 +208,14 @@ export const Register = ({handleClose}) => {
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <FormControl fullWidth={true}>
-              <InputLabel id="demo-multiple-name-label">All Channels</InputLabel>
+              <InputLabel id="demo-multiple-name-label">Case Chennel</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="All Channels" />}
+                input={<OutlinedInput label="Case Chennel" />}
                 autoWidth={true}
-                value={inputdata.channel}
-                name="name"
+                name="channels"
+                value={inputdata.channels}
                 onChange={setInputValue}
               >
                 {channels.map((name) => (
@@ -189,16 +240,19 @@ export const Register = ({handleClose}) => {
           <Grid item xs={12} sm={6} md={6} lg={6} >
             <FormControl fullWidth={true} >
               <InputLabel id="demo-multiple-name-label">
-                All Cases Type
+                Case Type
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label=" Case Type" />}
+                name="allCaseType"
+                value={inputdata.allCaseType}
+                onChange={setInputValue}
                 autoWidth={true}
               >
                 {caseType.map((name) => (
-                  <MenuItem key={name} value={name}>
+                  <MenuItem key={name} value={name} >
                     {name}
                   </MenuItem>
                 ))}
@@ -240,13 +294,16 @@ export const Register = ({handleClose}) => {
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <FormControl fullWidth={true}  >
               <InputLabel id="demo-multiple-name-label">
-                All Cases Type
+               Product Category
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="All Cases Type" />}
+                input={<OutlinedInput label=" Product Category" />}
                 autoWidth={true}
+                name="productCategory"
+                value={inputdata.productCategory}
+                onChange={setInputValue}
               >
                 {catagory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -269,13 +326,16 @@ export const Register = ({handleClose}) => {
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
-                Select Category from product list
+               Product
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label=" Product" />}
                 autoWidth={true}
+                name="product"
+                value={inputdata.product}
+                onChange={setInputValue}
               >
                 {selectcategory.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -298,13 +358,16 @@ export const Register = ({handleClose}) => {
           <Grid item xs={12} sm={6} md={6} lg={6} >
             <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
-                Select Category from product list
+                Brand
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label="Brand" />}
                 autoWidth={true}
+                name="brand"
+                value={inputdata.brand}
+                onChange={setInputValue}
               >
                 {brands.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -316,7 +379,7 @@ export const Register = ({handleClose}) => {
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
-              label="Pin Codes"
+              label="Pin Code"
               variant="outlined"
               fullWidth={true}
               name='pinCode' 
@@ -327,7 +390,7 @@ export const Register = ({handleClose}) => {
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6} >
             <TextField
-              label="Serial No"
+              label="Serial Number"
               variant="outlined"
               fullWidth={true}
               name='serialNo' 
@@ -365,8 +428,8 @@ export const Register = ({handleClose}) => {
               width: "359px",
             },
           }}
-          value={date}
-          onChange={handleChangedate}
+          value={date.$d}
+          onChange={handleChangedate} 
         />
       </LocalizationProvider>
           </Grid>
@@ -378,8 +441,11 @@ export const Register = ({handleClose}) => {
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label="Warranty" />}
                 autoWidth={true}
+                name="warranty"
+                value={inputdata.warranty}
+                onChange={setInputValue} 
               >
                 {warranty.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -397,8 +463,11 @@ export const Register = ({handleClose}) => {
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label="priority" />}
                 autoWidth={true}
+                name="priority"
+                value={inputdata.priority}
+                onChange={setInputValue}
               >
                 {priorityItem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -418,6 +487,9 @@ export const Register = ({handleClose}) => {
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
                 autoWidth={true}
+                name="problem"
+                value={inputdata.problem}
+                onChange={setInputValue}
               >
                 {selectproblem.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -437,6 +509,9 @@ export const Register = ({handleClose}) => {
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
                 autoWidth={true}
+                name="source"
+                value={inputdata.source}
+                onChange={setInputValue}
               >
                 {sources.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -449,13 +524,16 @@ export const Register = ({handleClose}) => {
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <FormControl fullWidth={true}>
               <InputLabel id="demo-multiple-name-label">
-               Selected Reason
+               Reason
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Name" />}
+                input={<OutlinedInput label="Reason" />}
                 autoWidth={true}
+                name="reason"
+                value={inputdata.reason}
+                onChange={setInputValue}
               >
                 {selectRegin.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -480,6 +558,9 @@ export const Register = ({handleClose}) => {
               label="Quantity"
               variant="outlined"
               fullWidth={true}
+              name="quantity"
+              value={inputdata.quantity}
+              onChange={setInputValue}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -534,6 +615,9 @@ export const Register = ({handleClose}) => {
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Name" />}
                 autoWidth={true}
+                name="visibility"
+                value={inputdata.visibility}
+                onChange={setInputValue}
               >
                 {visibility.map((name) => (
                   <MenuItem key={name} value={name}>
@@ -549,7 +633,7 @@ export const Register = ({handleClose}) => {
           </Grid>
           <Grid item xs={12}md={12}  >
            <Button variant="outlined"onClick={handleClose}>CANCEL</Button>
-           <Button variant="contained" color="success" sx={{ marginLeft:1}}>Save</Button>
+           <Button variant="contained" color="success" sx={{ marginLeft:1}} type="submit" onClick={submitUserData}>Save</Button>
           </Grid>
   
         </Grid>
