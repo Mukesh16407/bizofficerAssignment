@@ -1,8 +1,8 @@
-import React, {  useContext, useState } from 'react'
+import React, {  useContext, useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Radio from "@mui/material/Radio";
 import { showData } from '../provider/ContectProvider';
-import {Header} from './Header'
+
 
 const rows = [
   { id: 1, casenumber: 111116, title: 'Incidence', product: "Air Conditioner",substatus:"Cancelled", status:"Closed",technician:"Mohan Mahalotra",
@@ -75,6 +75,8 @@ export const Tables = () => {
   
   const [selectionModel, setSelectionModel] = useState(radioChecked);
   radioChecked = selectionModel;
+
+  const [getCaseData, setCaseData] = useState([]);
   
   if ((selectionModel.length)){
     setShow(true)
@@ -83,15 +85,31 @@ export const Tables = () => {
     setSelectionModel(newSelectionModel);
   }
 
+  const getData = async () => {
+    try {
+      const res = await fetch("http://localhost:6010/api/case/getdata", {
+        method: "GET",
+      });
+
+      const data = await res.json();
+      setCaseData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(getCaseData)
   // const selectedRow = rows.filter((item) => {
   //   return item.id === selectionModel[0];
   // });
 
+  useEffect(() => {
+    getData();
+  }, []);
 
 
   return (
     <>
-    <Header/>
+   
     <div style={{ height: 400, width: '100%',marginTop:"15px" }}>
       <DataGrid
         rows={rows}

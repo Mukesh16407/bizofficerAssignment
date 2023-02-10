@@ -19,8 +19,6 @@ import { Spinner } from "../../components/Spinner";
 import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
 
-
-
 const MenuProps = {
   root: {
     flexGrow: 1,
@@ -91,7 +89,8 @@ const visibility =[
 ];
 
 export const Register = ({handleClose}) => {
-  
+ 
+
   const [inputdata, setInputData] = useState({
   
     acoountName: "",
@@ -149,7 +148,7 @@ export const Register = ({handleClose}) => {
     tags,agents,visibility} =inputdata;
      
    try{
-    
+     // change localhost port
     const res =  await fetch('http://localhost:6010/api/case/register',{
       method:"POST",
       headers:{
@@ -167,6 +166,7 @@ export const Register = ({handleClose}) => {
      console.log(data)
      if(res.success){
         alert("Data Added");
+        
       
      }else{
       alert(data.message);
